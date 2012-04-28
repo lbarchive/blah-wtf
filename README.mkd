@@ -1,0 +1,67 @@
+Blah, WTF?
+==========
+
+*Blah, WTF?* is a generator which produce nonsense words but sort of like a language you know. The generation is based on the statistical probability of next possible character according the last and *n*-look-back characters. An important key is to use a good words file, usually a most common used words file would sound like *the* language result.
+
+Currently, it's only implemented in Python, a JavaScript version for web usage will be implemented soon, hopefully.
+
+Examples
+--------
+
+You can copy the text and ask Google Translate (Use Auto-detect) to pronounce the words for you.
+
+### Blah, WTF?
+
+#### Blah
+
+> Boo boo ba blah dah duh ba ba duh boo blah boo ba duh blah ba boo ba duh dah duh ba duh blah boo boo blah ba blah ba duh blah boo boo.
+
+#### Esperanto
+
+> Prikto vilaĝo ĉiuj kaŭ da ĉi homojn ĉarcenas kto umo komojn co unio is de e liam j komultas stier um.
+
+#### Klingon
+
+> Patlhwi'rojmab lhetwI'laH q tlh bIQ ghay'qaryorbIpghochwI' va Q qtu'megha' q chwI'pachenyap Du'meghqa'mey'qutlhenteprachev tlh Hu'tuq ' SDIr baHnIbyaSwa'tlh yvI' l Qay' b.
+
+#### Nyan
+
+> N n nyan nyan nyan n nyan n nyan n n n n n n n nyan n n n n nyan.
+
+#### Toki Pona
+
+> Kali li ona li si ki mona kena ena u je ma te an lapeken laso mi lin ko sina pala ponama talamakesi ute alen asi mi e wanimijo ki iten.
+
+### Okay...
+
+#### English
+
+> Fy rk obease aperoweasseationeation pple m smiscion ndisk ob st ge ultomp ge dirthard jous pring for ir dissmoodulain miscrip at hellig d ruck l deph.
+
+#### Finnish
+
+> Aada n joka hkässi n ksini eilu kestää kin valoukaso skeusti hti teä muttaa itellyönto lä suunta kkaan lu ni ua yritys htelsittusta ssampiaksyä näytä ri teksia nta en.
+
+#### French
+
+> D pors satistionstrent jordix Chrignéend Johniroffit adrouvéenuent consancanciparteuropuis senue photours ci Waleur onne warc isique omme herniqu'ent ages dre tier mmum a dosompordresur ford.
+
+#### German
+
+> Emenderhiele bragenteten Sein don ahr Fordet tationntelch gebes ELT Begegil künf Ges Grunder Polchen b fas skus Kreisten de Hanne zwen igen Firen Stungt Fir Bis re Arbegiediessehreineutste herft.
+
+#### Greek
+
+> Πο βλέο φως ενδι βαράγκη σι τεβδουμερισσε μένω τάλλουνένα πουρη κάνω πάρει χείνω υγγνώς δείς με μάδείχανέχαμάχιστελες μάδενώμα ξίζετές πεια μη τε ματου κά γότε ε.
+
+#### Korean
+
+> 돈 거 왜 가 집에 그러면 그러면은 될 그래갖고 했는데 때 그 있어 그런데 공부 다른 얘기 학교.
+
+#### Norwegian
+
+> Tipplag fer fingt e gtidenger vit gen ing ffekre langen jet ktetesk aleon ekria k le fet akt t ster åpe saven fornerl.
+
+#### Russian
+
+> Вер пон под писудоложнынчеседевять зный вережаль сок ствоз пионкий форомощний разавить леть двочь глядервый соба ть бщий диться мать рячасынчитель внить рытаник кродать зерьба ишка дногда спер союз удь занный стий.
