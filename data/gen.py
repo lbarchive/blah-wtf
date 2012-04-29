@@ -1,11 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Written by Yu-Jie Lin
 
+import argparse
 import json
 import sys
 
-WORDS_FILE = sys.argv[1]
-DATA_FILE = 'bwtf'
 
 def make_conn(data, a, b):
 
@@ -22,23 +21,39 @@ def make_conn(data, a, b):
 
 def main():
 
+  parser = argparse.ArgumentParser(description='Blah, WTF? data generator')
+  parser.add_argument('-l', '--limit',
+                      default=0,
+                      type=int,
+                      help='Limit amount of words to process')
+  parser.add_argument('-L', '--lookback',
+                      default=2,
+                      type=int,
+                      help='Number of lookback characters')
+  parser.add_argument('wordfile',
+                      type=argparse.FileType('r'),
+                      help='Words file',
+                      metavar='WORDSFILE')
+  parser.add_argument('outfile',
+                      type=argparse.FileType('w'),
+                      help='Output JSON file',
+                      metavar='OUTFILE')
+  args = parser.parse_args()
+
   data = {}
 
-  # number of chars to look back
-  n_lb = 2
-
-  with open(WORDS_FILE, 'r') as f:
-    for _word in f:
-      if _word[0] == '#':
-        continue
-      word = '^%s$' % _word.rstrip('\n').decode('utf-8')
-      for i in range(1, len(word)):
-        for i_lb in range(i - n_lb - 1, i):
-          w_lb = word[max(0, i_lb):i]
-          make_conn(data, w_lb, word[i])
-
-  with open(DATA_FILE + '.json', 'w') as f:
-    json.dump(data, f, separators=(',', ':'))
+  words_count = 0
+  for _word in args.wordfile:
+    if _word[0] == '#':
+      continue
+    word = '^%s$' % _word.rstrip('\n')
+    for i in range(1, len(word)):
+      for i_lb in range(i - args.lookback - 1, i):
+        w_lb = word[max(0, i_lb):i]
+        make_conn(data, w_lb, word[i])
+    words_count += 1
+    if args.limit and words_count >= args.limit:
+      break
 
   # cumulative data
   # FIXME this is not deep copy
@@ -50,9 +65,9 @@ def main():
       c += data_c[a][1][i]
       data_c[a][1][i] = c
 
-  with open(DATA_FILE + '.c.json', 'w') as f:
-    json.dump(data_c, f, separators=(',', ':'))
+  json.dump(data_c, args.outfile, separators=(',', ':'))
 
+  print(words_count, 'words processed.')
 
 if __name__ == '__main__':
   main()
