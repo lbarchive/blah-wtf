@@ -1,0 +1,75 @@
+#!/usr/bin/env python3
+# Written by Yu-Jie Lin
+
+
+import argparse
+import json
+import sys
+import blahwtf
+
+
+def make_parser():
+
+  parser = argparse.ArgumentParser(description='Blah, WTF?')
+  parser.add_argument('-L', '--lookback',
+                      default=2,
+                      type=int,
+                      help='Number of lookback characters')
+  subparsers = parser.add_subparsers(help='Commands')
+
+  common = argparse.ArgumentParser(add_help=False)
+  parser.add_argument('infile',
+                      type=argparse.FileType('r'),
+                      help='Input file',
+                      metavar='INFILE')
+  parser.add_argument('outfile',
+                      type=argparse.FileType('w'),
+                      help='Output file',
+                      metavar='OUTFILE')
+
+  g = subparsers.add_parser('generate',
+                            aliases=['g'],
+                            help='generate data',
+                            parents=[common])
+  g.add_argument('-l', '--limit',
+                 default=0,
+                 type=int,
+                 help='Limit amount of words to process')
+  g.set_defaults(command='generate')
+
+  b = subparsers.add_parser('blah',
+                            aliases=['b'],
+                            help='blah, blah, and blah',
+                            parents=[common])
+  b.set_defaults(command='blah')
+
+  return parser
+
+
+def main():
+
+  b = blahwtf.Blaher()
+
+  parser = make_parser()
+  args = parser.parse_args()
+
+  if args.command == 'generate':
+    words_count = 0
+    for word in args.infile:
+      if word.startswith('#'):
+        continue
+      b.read(word.rstrip('\n'))
+      words_count += 1
+      if args.limit and words_count >= args.limit:
+        break
+    _, data_c = b.clone_brain(clone_raw_brain=False)
+    json.dump(data_c, args.outfile, separators=(',', ':'))
+
+    print(words_count, 'words processed.')
+  elif args.command == 'blah':
+    data = json.load(args.infile)
+    b.brainwash(imprint=data)
+    print(b.blah())
+
+if __name__ == '__main__':
+  main()
